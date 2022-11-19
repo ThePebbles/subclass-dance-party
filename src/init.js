@@ -20,6 +20,34 @@ $(document).ready(function() {
     }
   }, 1000);
 
+  $('.lineUpButton').on('click', function(event) {
+    for (var i = 0; i < window.dancers.length; i++) {
+      var left;
+      if (i % 2 === 0) {
+        left = 705.288;
+      } else {
+        left = 450.2;
+      }
+      if (window.dancers[i].$node[0].classList.contains('spinny')) {
+        left -= 50;
+      }
+      var styleSettings = {
+        left: left
+      };
+      window.dancers[i].$node.css(styleSettings);
+    }
+  });
+
+  $('.resetButton').on('click', function(event) {
+    for (var i = 0; i < window.dancers.length; i++) {
+      var left = $('body').width() * Math.random();
+      var styleSettings = {
+        left: left
+      };
+      window.dancers[i].$node.css(styleSettings);
+    }
+  });
+
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -41,7 +69,7 @@ $(document).ready(function() {
       $('body').width() * Math.random(),
       Math.random() * 1000
     );
-    console.log(dancer);
+    window.dancers.push(dancer);
     $('body').append(dancer.$node);
   });
 });

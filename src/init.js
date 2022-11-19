@@ -40,11 +40,45 @@ $(document).ready(function() {
 
   $('.resetButton').on('click', function(event) {
     for (var i = 0; i < window.dancers.length; i++) {
+      var top = $('body').height() * Math.random();
       var left = $('body').width() * Math.random();
       var styleSettings = {
+        top: top,
         left: left
       };
       window.dancers[i].$node.css(styleSettings);
+    }
+  });
+
+
+  $('.PacMan').on('click', function() {
+    var bouncyElements = [];
+    var blinkyElements = [];
+    console.log(window.dancers[0].top);
+    for (var i = 0; i < window.dancers.length; i++) {
+      if (window.dancers[i].$node[0].classList.contains('blinky')) {
+        blinkyElements.push(window.dancers[i]);
+      }
+      if (window.dancers[i].$node[0].classList.contains('bouncy')) {
+        bouncyElements.push(window.dancers[i]);
+      }
+    }
+    var distance1 = undefined;
+    var closest = undefined;
+    for (var i = 0; i < blinkyElements.length; i++) {
+      for (var j = 0; j < bouncyElements.length; j++) {
+        console.log(blinkyElements, bouncyElements);
+        var topDif = Math.abs(blinkyElements[i].style.top - bouncyElements[j].top);
+        var leftDif = Math.abs(blinkyElements[i].left - bouncyElements[j].left);
+        var distance = Math.sqrt(Math.pow(topDif, 2) + Math.pow(leftDif, 2));
+        if ((!distance && !closest) || distance < distance1) {
+          distance1 = distance;
+          closest = bouncyElements[j];
+        }
+      }
+      blinkyElements[i].top = closest.top;
+      distance1 = undefined;
+      closest = undefined;
     }
   });
 

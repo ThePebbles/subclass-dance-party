@@ -68,15 +68,16 @@ $(document).ready(function() {
     for (var i = 0; i < blinkyElements.length; i++) {
       for (var j = 0; j < bouncyElements.length; j++) {
         console.log(blinkyElements, bouncyElements);
-        var topDif = Math.abs(blinkyElements[i].style.top - bouncyElements[j].top);
+        var topDif = Math.abs(blinkyElements[i].top - bouncyElements[j].top);
         var leftDif = Math.abs(blinkyElements[i].left - bouncyElements[j].left);
         var distance = Math.sqrt(Math.pow(topDif, 2) + Math.pow(leftDif, 2));
-        if ((!distance && !closest) || distance < distance1) {
+        if ((!distance1 && !closest) || distance < distance1) {
+          console.log('inside if statement');
           distance1 = distance;
           closest = bouncyElements[j];
         }
       }
-      blinkyElements[i].top = closest.top;
+      blinkyElements[i].setPosition(closest.top + 50, blinkyElements[i].left);
       distance1 = undefined;
       closest = undefined;
     }

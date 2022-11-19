@@ -11,8 +11,9 @@ describe('bouncyDancer', function() {
   });
 
   it('should move back and forth on the screen after lineup', function() {
+    var topBefore = bouncyDancer.top;
     $('.lineUpButton').click();
-    expect(bouncyDancer.$node[0].classList[2]).to.equal('x');
+    expect(bouncyDancer.top).to.not.equal(topBefore);
   });
 
   it('should have a class name of bouncy', function() {

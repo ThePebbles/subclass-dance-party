@@ -8,23 +8,54 @@ body{
   overflow: hidden;
 }
 body, a:link, a:visited, a:active{
-  color: lightblue;
+  text-decoration: none;
 }
-.title, .addDancerButton{
+.addDancerButton, .PacMan, .lineUpButton, .resetButton{
   padding:5px 12px;
   float:right;
+  color: #8217dc;
 }
 .topbar{
-  height:32px;
-  background-color: #555;
+  height:0px;
 }
 .title{
-  background-color: #777;
+  animation: cycle-color linear infinite;
+  animation-duration: 5s;
 }
+
+.topBarButton{
+  border-radius: 30px;
+  border: 10px solid #8217dc;
+}
+
+.topBarButton:hover{
+  color: magenta;
+  border: 10px solid magenta;
+}
+.topBarButton.PacMan:hover{
+  color: yellow;
+  border: 10px solid yellow;
+}
+
 .dancer{
   border:10px solid rgb(55, 0, 255);
   border-radius:10px;
   position:absolute;
+}
+
+.PacMan:hover{
+  color: yellow;
+}
+.lineUpButton:hover{
+  color: magenta;
+}
+
+.resetButton:hover{
+  color: magenta;
+}
+
+.addDancerButton:hover{
+  color: magenta;
 }
 
 .bouncy{
@@ -86,4 +117,79 @@ body, a:link, a:visited, a:active{
   100% {
     transform: translateX(calc(0vw - var(--width)));
   }
+}
+
+@keyframes cycle-color {
+  0%{
+    color: red
+  }
+  16% {
+    color: orange
+  }
+  32% {
+    color: yellow
+  }
+
+  48% {
+    color: green
+  }
+
+  64% {
+    color: blue
+  }
+
+  80% {
+    color: purple
+  }
+
+  92% {
+    color: magenta
+  }
+  100% {
+    color: red;
+  }
+}
+
+
+
+
+
+/* body {
+	display: flex;
+	height: 100vh;
+
+	align-items: center;
+	justify-content: center;
+} */
+
+.btn-liquid {
+	display: inline-block;
+	position: relative;
+	width: 240px;
+	height: 60px;
+
+	border-radius: 27px;
+
+	color: #fff;
+	font: 700 14px/60px "Droid Sans", sans-serif;
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.btn-liquid .inner {
+	position: relative;
+
+	z-index: 2;
+}
+
+.btn-liquid canvas {
+	position: absolute;
+	top: -50px;
+	right: -50px;
+	bottom: -50px;
+	left: -50px;
+
+	z-index: 1;
 }
